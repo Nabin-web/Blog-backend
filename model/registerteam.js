@@ -13,7 +13,9 @@ const Teams = mongoose.model('Teams', {
 
     team_contact: {type: String},
 
-    team_home_ground: {type: String}
+    team_home_ground: {type: String},
+
+    team_image: {type: String}
 })
 
 module.exports = Teams
