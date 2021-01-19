@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Teams = require('../model/registerteam')
+const Teams = require('../model/teams')
 
 router.post('/registerteam', function(req, res){
     const teamname = req.body.team_name
