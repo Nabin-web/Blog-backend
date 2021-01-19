@@ -1,0 +1,15 @@
+{
+  "name": "futsalopponentfinder",
+  "version": "1.0.0",
+  "description": "Finding futsal opponent",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nabin Kutu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.11.11"
+  }
+}
