@@ -6,7 +6,7 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 // const test = require("../middleware/test");
 
-//"clientData- Postman", "Message"
+//"clientData- Postman", "Message";
 router.post(
   "/registerteam",
   [
@@ -88,7 +88,9 @@ router.get("/teamlogin", function (req, res) {
         res.status(200).json({ token: token, message: "Auth success" });
       });
     })
-    .catch();
+    .catch(function (err) {
+      res.status(500).json({ error: err });
+    });
 });
 
 module.exports = router;
