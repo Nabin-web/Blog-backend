@@ -2,8 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Events = require("../model/event");
 const router = express.Router();
+const authentication = require("../middleware/authentication");
 
-router.post("/event/insert", function (req, res) {
+router.post("/event/insert", authentication.verifyUser, function (req, res) {
   //getting data of client or user
   const profile = req.body.profile;
   const opponent_team = req.body.opponent_team;

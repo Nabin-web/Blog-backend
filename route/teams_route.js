@@ -62,7 +62,7 @@ router.post(
   }
 );
 
-router.get("/teamlogin", function (req, res) {
+router.post("/team/login", function (req, res) {
   const email = req.body.email;
   const password = req.body.password;
   console.log(email);
@@ -94,3 +94,5 @@ router.get("/teamlogin", function (req, res) {
 });
 
 module.exports = router;
+
+//token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJUZWFtSUQiOiI2MDBmOWI3YTE5NjNiNzI4ZTRiNjNiYWUiLCJpYXQiOjE2MTE4MjA4OTV9.GNRXDWPLqJaIu6SAs7sDeYGUSgPSTIflvwQIoEEFru0",
