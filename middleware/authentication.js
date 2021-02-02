@@ -9,8 +9,8 @@ module.exports.verifyUser = function (req, res, next) {
     const teamData = jwt.verify(token, "secretkey"); //decode the encoded token
 
     Teams.findOne({ _id: teamData.TeamID })
-      .then(function (result) {
-        res.send("Auth successful");
+      .then(function (alldata) {
+        req.user = alldata;
       })
       .catch(function (e) {
         res.status(500).json({ error: e });
@@ -21,3 +21,12 @@ module.exports.verifyUser = function (req, res, next) {
 
   next();
 };
+
+// module.exports.verifyAdmin = function (req, res, next) {
+//   if (!req.user) {
+//     return res.status(401).json({ Alert: "Unauthorized User!" });
+//   }
+//   // else if (req.user.UserType! = 'Admin'){
+//   //   return res.status(401).json({Alert: 'Unauthorized User!!'})
+//   // }
+// };
