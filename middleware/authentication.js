@@ -7,19 +7,27 @@ module.exports.verifyUser = function (req, res, next) {
     console.log("This is a guard !");
     const token = req.headers.authorization.split(" ")[1];
     const teamData = jwt.verify(token, "secretkey"); //decode the encoded token
+    console.log(teamData.TeamID);
 
-    Teams.findOne({ _id: teamData.TeamID })
+    Teams.findOne({ _id: teamData.TeamID._id })
       .then(function (alldata) {
+        //   console.log(alldata);
+        console.log("Yetaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         req.user = alldata;
+        console.log(req.user);
+        next();
+        //console.log("Data aayo");
       })
       .catch(function (e) {
+        console.log("catch ma aayo");
         res.status(500).json({ error: e });
       });
   } catch (err) {
-    res.status(401).json({ message: "Auth failed" });
+    console.log("Ya pani aayena xa");
+    return res.status(401).json({ message: "Auth failed" });
   }
 
-  next();
+  //next();
 };
 
 // module.exports.verifyAdmin = function (req, res, next) {

@@ -1,23 +1,21 @@
 const mongoose = require("mongoose");
 
 const Teams = mongoose.model("Teams", {
-  team_name: { type: String, required: true },
+  teamname: { type: String },
 
-  team_captain: { type: String, required: true },
+  teamcaptain: { type: String },
 
   email: {
     type: String,
-    required: true,
-    unique: true,
   },
 
-  password: { type: String, required: true },
+  password: { type: String },
 
-  team_contact: { type: String, required: true },
+  teamcontact: { type: String },
 
-  team_home_ground: { type: String, required: true },
+  teamhomeground: { type: String },
 
-  team_image: { type: String },
+  teamimage: { type: String },
 });
 
 module.exports = Teams;
