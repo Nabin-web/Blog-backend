@@ -4,6 +4,7 @@ const Teams = require("../model/teams");
 const { check, validationResult } = require("express-validator");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const authentication = require("../middleware/authentication");
 
 const querystring = require("querystring");
 const upload = require("../middleware/upload");
@@ -140,6 +141,22 @@ router.put("/update/:id", function (req, res) {
       res.status(500).json({ error: error });
     });
 });
+
+router.get(
+  "/review/singleteam/:id",
+  authentication.verifyUser,
+  function (req, res) {
+    console.log("Inside team single");
+    const id = req.params.id;
+    Teams.findOne({ _id: id })
+      .then(function (result) {
+        res.status(200).json({ data: result });
+      })
+      .catch(function (err) {
+        res.status(500).json({ error: err });
+      });
+  }
+);
 
 module.exports = router;
 

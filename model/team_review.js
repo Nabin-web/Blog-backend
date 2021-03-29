@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const SchemaTypes = mongoose.Schema.Types;
 
 const review = mongoose.model("review", {
-  teamimage: { type: String },
+  teamid: { type: String },
   teamname: { type: String },
+  teamimage: { type: String },
+  comment: { type: String },
   rate: { type: String },
 });
 
