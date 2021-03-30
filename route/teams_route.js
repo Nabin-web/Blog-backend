@@ -43,6 +43,8 @@ router.post(
       const teamimage = req.body.teamimage;
       //const teamimage = req.file.path;
 
+      console.log(teamimage);
+
       //Encrypt
       bcryptjs.hash(password, 10, function (err, hash) {
         const registration_data = Teams({
