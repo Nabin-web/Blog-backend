@@ -109,7 +109,6 @@ router.post("/team/login", function (req, res) {
 router.get("/show/allteam", function (req, res) {
   Teams.find()
     .then(function (team) {
-      console.log(team);
       res.status(200).json({ data: team });
     })
     .catch(function (err) {

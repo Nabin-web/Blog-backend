@@ -93,8 +93,7 @@ router.get("/event/showall", function (req, res) {
     .populate("home_team")
     .then(function (data) {
       console.log("We are here!");
-      console.log(data);
-
+      console.log("Eventss", data);
       res.status(200).json({ success: true, data: data });
     })
     .catch(function (err) {
