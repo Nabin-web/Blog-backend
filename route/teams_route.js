@@ -98,7 +98,7 @@ router.post("/team/login", function (req, res) {
         console.log("login success");
 
         res.status(200).json({ token: token, message: true, data: teamData });
-        console.log(teamData);
+        // console.log(teamData);
       });
     })
     .catch(function (err) {
