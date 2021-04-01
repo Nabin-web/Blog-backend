@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const Challenge_Accpet = mongoose.model("Challenge_Accpet", {
   event_id: { type: String },
+  home_team_id: { type: String },
   home_team: { type: String },
   away_team: { type:String},
   time: { type:String},

@@ -10,6 +10,7 @@ router.post(
     console.log("User");
     console.log(req.user);
     const event_id = req.body.event_id;
+    const home_team_id = req.body.home_team._id;
     const home_team = req.body.home_team.teamname;
     const away_team = req.user._id;
     const time = req.body.time;
@@ -20,6 +21,7 @@ router.post(
 
     const challenge_data = new Challenge_Accept({
       event_id: event_id,
+      home_team_id: home_team_id,
       home_team: home_team,
       away_team: away_team,
       time: time,
@@ -74,6 +76,7 @@ router.delete("/challenge/delete/:id", function (req, res) {
 //     });
 // });
 
+//For away team
 router.get(
   "/challenge/show/:id",
   authentication.verifyUser,
@@ -91,4 +94,5 @@ router.get(
       });
   }
 );
+
 module.exports = router;

@@ -73,6 +73,7 @@ router.get("/review/show", function (req, res) {
   review
     .find()
     .then(function (data) {
+      console.log(data[0].rate);
       res.status(200).json({ data: data });
     })
     .catch(function (err) {

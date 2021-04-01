@@ -7,7 +7,7 @@ const review = mongoose.model("review", {
   teamname: { type: String },
   teamimage: { type: String },
   comment: { type: String },
-  rate: { type: String },
+  rate: { type: Number },
 });
 
 module.exports = review;

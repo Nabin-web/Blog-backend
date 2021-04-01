@@ -54,7 +54,7 @@ router.post(
           password: hash,
           teamcontact: teamcontact,
           teamhomeground: teamhomeground,
-          teamimage: teamimage,
+          teamimage: "default.png",
         });
 
         registration_data
