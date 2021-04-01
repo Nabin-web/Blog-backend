@@ -118,7 +118,7 @@ router.get("/show/allteam", function (req, res) {
 
 router.put("/update/:id", function (req, res) {
   const id = req.params.id;
-  const file = req.files.file;
+  const file = req.file;
   console.log(file);
   file.mv(`Teamimages/${file.name}`, async (err) => {
     if (err) {
@@ -159,6 +159,24 @@ router.get(
       });
   }
 );
+
+router.put("/update/profile/:id", upload.single("teamimage"), function (req, res) {
+  const id = req.params.id;
+  const file = req.file;
+  console.log(file);
+  Teams.updateOne(
+    { _id: id },
+    {
+      teamimage: Date.now() + file.name,
+    }
+  )
+    .then(function (result) {
+      res.status(200).json({ message: true });
+    })
+    .catch(function (err) {
+      res.status(500).json({ error: err });
+    });
+});
 
 module.exports = router;
 
