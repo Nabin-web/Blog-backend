@@ -160,14 +160,15 @@ router.get(
   }
 );
 
-router.put("/update/profile/:id", upload.single("teamimage"), function (req, res) {
+router.put("/photo/:id", upload.single("Teamimages"), function (req, res) {
   const id = req.params.id;
-  const file = req.file;
+  console.log(id);
+  const file = req.files.file;
   console.log(file);
   Teams.updateOne(
     { _id: id },
     {
-      teamimage: Date.now() + file.name,
+      teamimage: file.name,
     }
   )
     .then(function (result) {
