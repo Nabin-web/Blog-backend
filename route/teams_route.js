@@ -164,7 +164,7 @@ router.put("/photo/:id", upload.single("Teamimages"), function (req, res) {
   const id = req.params.id;
   console.log(id);
   const file = req.files.file;
-  console.log(file);
+  // console.log(file);
   Teams.updateOne(
     { _id: id },
     {
