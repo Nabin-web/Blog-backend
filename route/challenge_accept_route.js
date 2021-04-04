@@ -53,6 +53,7 @@ router.delete("/challenge/delete/:id", function (req, res) {
     });
 });
 
+
 // router.put("/challenge/update/:id", function (req, res) {
 //   const id = req.params.id;
 //   const home_challenger = req.body.home_challenger;
@@ -76,7 +77,7 @@ router.delete("/challenge/delete/:id", function (req, res) {
 //     });
 // });
 
-//For away team
+
 router.get(
   "/challenge/show/:id",
   authentication.verifyUser,
