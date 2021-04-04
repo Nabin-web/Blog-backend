@@ -11,4 +11,5 @@ const Challenge_Accpet = mongoose.model("Challenge_Accpet", {
   event_location: {type: String}
 });
 
+
 module.exports = Challenge_Accpet;
