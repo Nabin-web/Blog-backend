@@ -116,6 +116,17 @@ router.get("/show/allteam", function (req, res) {
     });
 });
 
+router.get("/show/team/:id", function (req, res) {
+  const id = req.params.id;
+  Teams.find({ _id: id })
+    .then(function (team) {
+      res.status(200).json({ data: team });
+    })
+    .catch(function (err) {
+      res.status(500).json({ error: err });
+    });
+});
+
 router.put("/update/:id", function (req, res) {
   const id = req.params.id;
   const file = req.file;
@@ -160,18 +171,19 @@ router.get(
   }
 );
 
-router.put("/photo/:id", upload.single("Teamimages"), function (req, res) {
+router.put("/photo/:id", upload.single("teamimage"), function (req, res) {
   const id = req.params.id;
   console.log(id);
-  const file = req.files.file;
-  // console.log(file);
+  const file = req.file;
+  console.log(file);
   Teams.updateOne(
     { _id: id },
     {
-      teamimage: file.name,
+      teamimage: file.filename,
     }
   )
     .then(function (result) {
+      console.log("Done");
       res.status(200).json({ message: true });
     })
     .catch(function (err) {

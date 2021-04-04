@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use("/images", express.static(__dirname + "/Teamimages"));
-app.use(fileupload());
+// app.use(fileupload());
 app.use(registerteam_route);
 app.use(Event_route);
 app.use(challenge_accept);
