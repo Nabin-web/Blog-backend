@@ -23,3 +23,4 @@ app.use(challenge_accept);
 app.use(review);
 // app.use(event_team_detail);
 app.listen(90);
+// "test": "echo \"Error: no test specified\" && exit 1"
