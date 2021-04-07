@@ -17,6 +17,8 @@ afterAll(async () => {
 });
 
 describe("Teams Schema Test ", () => {
+  var id;
+  var rid;
   it("Registration Test", () => {
     const team_data = {
       teamname: "Bayern Munchen",
@@ -52,6 +54,7 @@ describe("Teams Schema Test ", () => {
       event_location: "Northpoint",
     };
     return Events.create(event_data).then((pro_ret) => {
+      id = pro_ret._id;
       expect(pro_ret.event_location).toEqual("Northpoint");
     });
   });
@@ -60,22 +63,25 @@ describe("Teams Schema Test ", () => {
   it("Update Event", async () => {
     // const new_location = "Bhaisipati";
     return Events.findOneAndUpdate(
-      { _id: Object("606a87cbeaff1d4afc4104da") },
-      { $set: { event_location: "Bhaisipati" } }
+      { _id: id },
+      { $set: { event_location: "Bhaisipati" } },
+      { new: true }
     ).then((pp) => {
       expect(pp.event_location).toEqual("Bhaisipati");
     });
+    // console.log(pp);
   });
 
   // Show Event
   it("Show Event", async () => {
     return Events.find().then((data) => {
       //   expect(data.event_location).toEqual("Northpoint");
-      expect(status.ok).toBe(1);
+      // console.log(data.length);
+      expect(data.length).toEqual(37);
     });
   });
 
-  //Delete Event
+  // Delete Event
   it("Delete Event", async () => {
     return Events.deleteOne({ _id: "606a87cbeaff1d4afc4104da" });
     expect(status.ok).toBe(1);
@@ -91,14 +97,16 @@ describe("Teams Schema Test ", () => {
       rate: 4,
     };
     return review.create(review_data).then((data) => {
+      rid = data._id;
       expect(data.teamname).toEqual("Home");
     });
   });
 
   //Show Reviews
   it("Show Review", async () => {
-    return review.find().then((data) => {
-      expect(data.teamname).toEqual("Home");
+    return review.find({ _id: rid }).then((data) => {
+      // expect(data[0].teamname).toEqual("Home");
+      expect(data.length).toEqual(1);
     });
   });
 
