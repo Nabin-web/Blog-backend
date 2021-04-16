@@ -27,13 +27,15 @@ router.post(
       event_location: event_location,
       profile: profile,
     });
-    console.log(profile);
+    // console.log(profile);
 
     //data saved to database
     Event_data.save()
       .then(function (result) {
-        res.status(201).json({ success: true, data: result });
-        console.log("Inseted");
+        // res.status(201).json({ success: true, data: result });
+        res.status(201).json({ success: true });
+
+        console.log("Inserted");
       })
       //if error occur
       .catch(function (e) {
@@ -45,6 +47,9 @@ router.post(
 //Update
 router.put("/event/update/:id", authentication.verifyUser, function (req, res) {
   console.log("Inside event update");
+
+  console.log(req.body.id);
+
   const id = req.body.id;
   const home_team = req.body.home_team;
   const date = req.body.date;
@@ -64,7 +69,7 @@ router.put("/event/update/:id", authentication.verifyUser, function (req, res) {
   )
 
     .then(function (result) {
-      res.status(200).json({ message: "Event updated" });
+      res.status(200).json({ success: true });
     })
     .catch(function (err) {
       res.status(500).json({ Error: err });
@@ -79,7 +84,7 @@ router.delete(
     const id = req.params.id;
     Events.deleteOne({ _id: id })
       .then(function (result) {
-        res.status(200).json({ message: "User deleted" });
+        res.status(200).json({ success: true });
       })
       .catch(function (err) {
         res.status(500).json({ error: err });
@@ -112,5 +117,45 @@ router.get("/event/singleEvent/:id", function (req, res) {
       res.status(500).json({ error: err });
     });
 });
+
+router.put(
+  "/android/eventupdate/:id",
+  authentication.verifyUser,
+  function (req, res) {
+    console.log("Inside event update");
+    console.log(req.body.home_team_id);
+    console.log(req.body.time);
+    console.log(req.params.id);
+    console.log(req.body.contact);
+    console.log(req.body.date);
+    console.log(req.body.event_location);
+
+    const id = req.params.id;
+    const home_team = req.body.home_team_id;
+    const date = req.body.date;
+    const time = req.body.time;
+    const contact = req.body.contact;
+    const event_location = req.body.event_location;
+
+    Events.updateOne(
+      { _id: id },
+      {
+        home_team: home_team,
+        date: date,
+        time: time,
+        contact: contact,
+        event_location: event_location,
+      }
+    )
+
+      .then(function (result) {
+        console.log(result);
+        res.status(200).json({ success: true });
+      })
+      .catch(function (err) {
+        res.status(500).json({ Error: err });
+      });
+  }
+);
 
 module.exports = router;

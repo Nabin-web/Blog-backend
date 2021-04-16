@@ -1,14 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const Challenge_Accept = require("../model/challenge_accept");
+const android_challenge = require("../model/androidchallengeaccept");
+
 const authentication = require("../middleware/authentication");
+const Teams = require("../model/teams");
 
 router.post(
   "/challenge/accept",
   authentication.verifyUser,
   function (req, res) {
-    console.log("User");
-    console.log(req.user);
+    console.log("Body", req.body);
     const event_id = req.body.event_id;
     const home_team_id = req.body.home_team._id;
     const home_team = req.body.home_team.teamname;
@@ -53,7 +55,6 @@ router.delete("/challenge/delete/:id", function (req, res) {
     });
 });
 
-
 // router.put("/challenge/update/:id", function (req, res) {
 //   const id = req.params.id;
 //   const home_challenger = req.body.home_challenger;
@@ -77,12 +78,10 @@ router.delete("/challenge/delete/:id", function (req, res) {
 //     });
 // });
 
-
 router.get(
   "/challenge/show/:id",
   authentication.verifyUser,
   function (req, res) {
-    console.log("Accept data khojna aayo");
     const id = req.user._id;
     console.log(id);
     Challenge_Accept.find({ away_team: id })
@@ -96,5 +95,62 @@ router.get(
   }
 );
 
+router.get(
+  "/android/challengeshow/:id",
+  authentication.verifyUser,
+  function (req, res) {
+    console.log("Accept data khojna aayo");
+    const id = req.user._id;
+    console.log(id);
+    android_challenge
+      .find({ away_team: id })
+      .populate("home_team")
+      .then(function (data) {
+        console.log("Result", data);
+        res.status(200).json({ message: true, data: data });
+      })
+      .catch(function (err) {
+        res.status(500).json({ error: err });
+      });
+  }
+);
+
+router.post(
+  "/challenge/accepts",
+  authentication.verifyUser,
+  function (req, res) {
+    const event_id = req.body.event_id;
+    const home_team = req.body.home_team.home_team_id;
+    const away_team = req.user._id;
+    const time = req.body.time;
+    const date = req.body.date;
+    const contact = req.body.contact;
+    const event_location = req.body.event_location;
+    //console.log(req.body.event_id);
+
+    const challenge_data = new android_challenge({
+      event_id: event_id,
+      // home_team_id: home_team_id,
+      home_team: home_team,
+      away_team: away_team,
+      time: time,
+      date: date,
+      contact: contact,
+      event_location: event_location,
+    });
+
+    console.log(challenge_data);
+
+    challenge_data
+      .save()
+      .then(function (result) {
+        console.log(result);
+        res.status(200).json({ message: true, data: challenge_data });
+      })
+      .catch(function (err) {
+        res.status(400).json({ error: err });
+      });
+  }
+);
 
 module.exports = router;

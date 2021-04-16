@@ -74,16 +74,16 @@ describe("Teams Schema Test ", () => {
 
   // Show Event
   it("Show Event", async () => {
-    return Events.find().then((data) => {
+    return Events.find({ _id: id }).then((data) => {
       //   expect(data.event_location).toEqual("Northpoint");
       // console.log(data.length);
-      expect(data.length).toEqual(37);
+      expect(data.length).toEqual(1);
     });
   });
 
   // Delete Event
   it("Delete Event", async () => {
-    return Events.deleteOne({ _id: "606a87cbeaff1d4afc4104da" });
+    return Events.deleteOne({ _id: id });
     expect(status.ok).toBe(1);
   });
 

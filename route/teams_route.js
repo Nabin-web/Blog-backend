@@ -129,7 +129,7 @@ router.get("/show/team/:id", function (req, res) {
 
 router.put("/update/:id", function (req, res) {
   const id = req.params.id;
-  const file = req.file;
+  const file = req.files.file;
   console.log(file);
   file.mv(`Teamimages/${file.name}`, async (err) => {
     if (err) {

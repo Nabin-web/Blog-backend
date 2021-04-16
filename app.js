@@ -9,6 +9,7 @@ const Event_route = require("./route/event_route");
 const challenge_accept = require("./route/challenge_accept_route");
 const review = require("./route/review");
 const event_team_detail = require("./route/event_team_route");
+const Challenge_Accept = require("./model/androidchallengeaccept");
 
 const app = express();
 app.use(cors());
@@ -21,6 +22,7 @@ app.use(registerteam_route);
 app.use(Event_route);
 app.use(challenge_accept);
 app.use(review);
+app.use(Challenge_Accept)
 // app.use(event_team_detail);
 app.listen(90);
 // "test": "echo \"Error: no test specified\" && exit 1"
