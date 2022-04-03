@@ -3,18 +3,19 @@ const router = express.Router();
 const review = require("../model/team_review");
 const authentication = require("../middleware/authentication");
 
-router.post("/review/insert/", authentication.verifyUser, function (req, res) {
+router.post("/review", authentication.verifyUser, function (req, res) {
   const teamid = req.body.teamid;
   const teamname = req.body.teamname;
   // const teamimage = req.body.teamimage;
   const comment = req.body.comment;
   // const rate = req.body.rate;
-  console.log(rate);
+  const postId = req.body.postId;
   const reviews = new review({
     teamid: teamid,
     teamname: teamname,
     // teamimage: teamimage,
     comment: comment,
+    postId: postId,
     // rate: rate,
   });
   console.log("review");
@@ -73,8 +74,8 @@ router.get("/review/show", function (req, res) {
   review
     .find()
     .then(function (data) {
-      console.log(data[0].rate);
-      res.status(200).json({ data: data });
+      console.log(data);
+      res.status(200).json({ data: data, message: true });
     })
     .catch(function (err) {
       res.status(400).json({ error: err });

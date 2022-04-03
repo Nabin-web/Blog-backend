@@ -7,6 +7,8 @@ const review = mongoose.model("review", {
   teamname: { type: String },
   // teamimage: { type: String },
   comment: { type: String },
+  postId: { type: String },
+
   // rate: { type: Number },
 });
 
