@@ -5,9 +5,9 @@ const SchemaTypes = mongoose.Schema.Types;
 const review = mongoose.model("review", {
   teamid: { type: String },
   teamname: { type: String },
-  teamimage: { type: String },
+  // teamimage: { type: String },
   comment: { type: String },
-  rate: { type: Number },
+  // rate: { type: Number },
 });
 
 module.exports = review;

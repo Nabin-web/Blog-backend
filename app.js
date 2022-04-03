@@ -22,7 +22,7 @@ app.use(registerteam_route);
 app.use(Event_route);
 app.use(challenge_accept);
 app.use(review);
-app.use(Challenge_Accept)
+app.use(Challenge_Accept);
 // app.use(event_team_detail);
-app.listen(90);
+app.listen(5000);
 // "test": "echo \"Error: no test specified\" && exit 1"

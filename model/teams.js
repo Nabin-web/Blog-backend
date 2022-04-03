@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Teams = mongoose.model("Teams", {
   teamname: { type: String },
 
-  teamcaptain: { type: String },
+  // teamcaptain: { type: String },
 
   email: {
     type: String,
@@ -11,11 +11,11 @@ const Teams = mongoose.model("Teams", {
 
   password: { type: String },
 
-  teamcontact: { type: String },
+  // teamcontact: { type: String },
 
-  teamhomeground: { type: String },
+  // teamhomeground: { type: String },
 
-  teamimage: { type: String },
+  // teamimage: { type: String },
 });
 
 module.exports = Teams;

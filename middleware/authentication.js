@@ -3,11 +3,12 @@ const Teams = require("../model/teams");
 const Team = require("../model/teams");
 
 module.exports.verifyUser = function (req, res, next) {
+  console.log(req.headers.authorization);
   try {
     console.log("This is a guard !");
     const token = req.headers.authorization.split(" ")[1];
     const teamData = jwt.verify(token, "secretkey"); //decode the encoded token
-    console.log(teamData.TeamID);
+    console.log(teamData);
 
     Teams.findOne({ _id: teamData.TeamID._id })
       .then(function (alldata) {

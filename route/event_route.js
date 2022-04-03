@@ -6,26 +6,26 @@ const authentication = require("../middleware/authentication");
 const { route } = require("./teams_route");
 
 router.post(
-  "/event/insert/:id",
+  "/insert/:id",
   authentication.verifyUser,
   function (req, res) {
     //getting data of client or user
 
-    const profile = req.body.profile;
+    // const profile = req.body.profile;
     const home_team = req.params.id;
-    const date = req.body.date;
-    const time = req.body.time;
-    const contact = req.body.contact;
-    const event_location = req.body.event_location;
+    const titile = req.body.title;
+    const description = req.body.description;
+    // const contact = req.body.contact;
+    // const event_location = req.body.event_location;
 
     //Inserting in database
     const Event_data = new Events({
       home_team: home_team,
-      date: date,
-      time: time,
-      contact: contact,
-      event_location: event_location,
-      profile: profile,
+      titile: titile,
+      description: description,
+      // contact: contact,
+      // event_location: event_location,
+      // profile: profile,
     });
     // console.log(profile);
 
@@ -92,7 +92,7 @@ router.delete(
   }
 );
 
-router.get("/event/showall", function (req, res) {
+router.get("/posts", function (req, res) {
   console.log("Event showall");
   Events.find()
     .populate("home_team")

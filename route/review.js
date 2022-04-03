@@ -6,16 +6,16 @@ const authentication = require("../middleware/authentication");
 router.post("/review/insert/", authentication.verifyUser, function (req, res) {
   const teamid = req.body.teamid;
   const teamname = req.body.teamname;
-  const teamimage = req.body.teamimage;
+  // const teamimage = req.body.teamimage;
   const comment = req.body.comment;
-  const rate = req.body.rate;
+  // const rate = req.body.rate;
   console.log(rate);
   const reviews = new review({
     teamid: teamid,
     teamname: teamname,
-    teamimage: teamimage,
+    // teamimage: teamimage,
     comment: comment,
-    rate: rate,
+    // rate: rate,
   });
   console.log("review");
 

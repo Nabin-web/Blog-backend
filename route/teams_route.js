@@ -13,48 +13,43 @@ const { response } = require("express");
 
 //"clientData- Postman", "Message";
 router.post(
-  "/registerteam",
+  "/register",
   [
     check("teamname", "Team Name required!").not().isEmpty(),
     check("email", "Invalid Email").isEmail(),
     check("email", "Email required!").not().isEmpty(),
-    check("teamcaptain", "Team Captain required").not().isEmpty(),
+    // check("teamcaptain", "Team Captain required").not().isEmpty(),
     check("password", "Password required!").not().isEmpty(),
-    check("teamcontact", "Team contact required!").not().isEmpty(),
-    check("teamhomeground", "Team home ground required !").not().isEmpty(),
+    // check("teamcontact", "Team contact required!").not().isEmpty(),
+    // check("teamhomeground", "Team home ground required !").not().isEmpty(),
   ],
 
   function (req, res) {
-    //if(req.file==undefined) or
-    // if (req.fileValidationError) {
-    //   res.status(400).json({ error: req.fileValidationError });
-    // }
     const error = validationResult(req);
-    // console.log("file:", req.file);
+    console.log(req.body.email);
 
-    //res.send(error.array())
     if (error.isEmpty()) {
       const teamname = req.body.teamname;
-      const teamcaptain = req.body.teamcaptain;
+      // const teamcaptain = req.body.teamcaptain;
       const email = req.body.email;
       const password = req.body.password;
-      const teamcontact = req.body.teamcontact;
-      const teamhomeground = req.body.teamhomeground;
-      const teamimage = req.body.teamimage;
+      // const teamcontact = req.body.teamcontact;
+      // const teamhomeground = req.body.teamhomeground;
+      // const teamimage = req.body.teamimage;
       //const teamimage = req.file.path;
 
-      console.log(teamimage);
+      // console.log(teamimage);
 
       //Encrypt
       bcryptjs.hash(password, 10, function (err, hash) {
         const registration_data = Teams({
           teamname: teamname,
-          teamcaptain: teamcaptain,
+          // teamcaptain: teamcaptain,
           email: email,
           password: hash,
-          teamcontact: teamcontact,
-          teamhomeground: teamhomeground,
-          teamimage: "default.png",
+          // teamcontact: teamcontact,
+          // teamhomeground: teamhomeground,
+          // teamimage: "default.png",
         });
 
         registration_data
@@ -73,7 +68,7 @@ router.post(
   }
 );
 
-router.post("/team/login", function (req, res) {
+router.post("/login", function (req, res) {
   console.log("we are herre");
   const email = req.body.email;
   const password = req.body.password;
